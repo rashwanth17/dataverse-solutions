@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ras.google.Button.CustomAction" Location="Mscrm.FormEditorTab.EditButtons.Controls._children" Sequence="25">
+      <CommandUIDefinition>
+        <Button Id="google.Button" LabelText="$LocLabels:google.Button.LabelText" Sequence="25" TemplateAlias="o2" ToolTipTitle="$LocLabels:google.Button.ToolTipTitle" ToolTipDescription="$LocLabels:google.Button.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.Group.Group5.CustomAction" Location="Mscrm.FormEditorTab.Groups._children" Sequence="15">
+      <CommandUIDefinition>
+        <Group Command="Mscrm.Enabled" Description="$LocLabels:Group.Group5.Title" Id="Group.Group5" Sequence="15" Template="Mscrm.Templates.Flexible3" Title="$LocLabels:Group.Group5.Title">
+          <Controls Id="Group.Group5.Controls">
+            <Button Id="Test.Button" LabelText="$LocLabels:Test.Button.LabelText" Sequence="5" TemplateAlias="-" />
+          </Controls>
+        </Group>
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.Mscrm.FormEditorTab.MaxSize.0.CustomAction" Location="Mscrm.FormEditorTab.Scaling._children" Sequence="10">
+      <CommandUIDefinition>
+        <MaxSize GroupId="Group.Group5" Id="ras.Mscrm.FormEditorTab.MaxSize.0" Sequence="10" Size="LargeLargeMedium" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.UpdateContactPreference.Button.CustomAction" Location="Mscrm.FormEditorTab.EditButtons.Controls._children" Sequence="29">
+      <CommandUIDefinition>
+        <FlyoutAnchor Command="Mscrm.Enabled" Id="UpdateContactPreference.Button" LabelText="$LocLabels:UpdateContactPreference.Button.LabelText" Sequence="29" TemplateAlias="o2">
+          <Menu Id="UpdateContactPreference.Button.Menu">
+            <MenuSection Id="UpdateEmailPreference.Section" Title="$LocLabels:UpdateEmailPreference.Section.Title" Sequence="5" DisplayMode="Menu16">
+              <Controls Id="UpdateEmailPreference.Section.Controls">
+                <Button Id="UpdateEmailPreference.Button" LabelText="$LocLabels:UpdateEmailPreference.Button.LabelText" Sequence="10" />
+              </Controls>
+            </MenuSection>
+            <MenuSection Id="UpdateBulkEmailPreference.Section" Title="$LocLabels:UpdateBulkEmailPreference.Section.Title" Sequence="15" DisplayMode="Menu16">
+              <Controls Id="UpdateBulkEmailPreference.Section.Controls">
+                <Button Id="UpdateBulkEmailPreference.Button" LabelText="$LocLabels:UpdateBulkEmailPreference.Button.LabelText" Sequence="20" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </FlyoutAnchor>
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.UpdateMoneyDetails.Button.CustomAction" Location="Mscrm.FormEditorTab.EditButtons.Controls._children" Sequence="28">
+      <CommandUIDefinition>
+        <SplitButton Command="Mscrm.Enabled" Id="UpdateMoneyDetails.Button" LabelText="$LocLabels:UpdateMoneyDetails.Button.LabelText" Sequence="28" TemplateAlias="o2">
+          <Menu Id="UpdateMoneyDetails.Button.Menu">
+            <MenuSection Id="UpdateAccountDetails.Section" Title="$LocLabels:UpdateAccountDetails.Section.Title" Sequence="5" DisplayMode="Menu16">
+              <Controls Id="UpdateAccountDetails.Section.Controls">
+                <Button Id="UpdateCreditLimit.Button" LabelText="$LocLabels:UpdateCreditLimit.Button.LabelText" Sequence="10" />
+                <Button Id="UpdateMarketCaptilization.Button" LabelText="$LocLabels:UpdateMarketCaptilization.Button.LabelText" Sequence="15" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </SplitButton>
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ras.ApplicationRibbon.Command0.Command">
+      <EnableRules />
+      <DisplayRules />
+      <Actions>
+        <Url Address="https://google.com" WinMode="0" />
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules />
+    <EnableRules />
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="google.Button.LabelText">
+      <Titles>
+        <Title description="GOOGLE" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="google.Button.ToolTipDescription">
+      <Titles>
+        <Title description="this button will take you to google search page" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="google.Button.ToolTipTitle">
+      <Titles>
+        <Title description="google button" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Group.Group5.Title">
+      <Titles>
+        <Title description="Group1" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="Test.Button.LabelText">
+      <Titles>
+        <Title description="TEST" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateAccountDetails.Section.Title">
+      <Titles>
+        <Title description="Update Account Details" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateBulkEmailPreference.Button.LabelText">
+      <Titles>
+        <Title description="UpdateBulkEmailPreference" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateBulkEmailPreference.Section.Title">
+      <Titles>
+        <Title description="Update Bulk Email Preference " languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateContactPreference.Button.LabelText">
+      <Titles>
+        <Title description="Update Contact Preference" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateCreditLimit.Button.LabelText">
+      <Titles>
+        <Title description="Update Credit Limit" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateEmailPreference.Button.LabelText">
+      <Titles>
+        <Title description="UpdateEmailPreference" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateEmailPreference.Section.Title">
+      <Titles>
+        <Title description="Update Emaiil Preference" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateMarketCaptilization.Button.LabelText">
+      <Titles>
+        <Title description="Update Market Capitilization" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="UpdateMoneyDetails.Button.LabelText">
+      <Titles>
+        <Title description="Update Money Details" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>

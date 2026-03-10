@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RibbonDiffXml xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <CustomActions>
+    <CustomAction Id="ras.account.Approve.Button.CustomAction" Location="Mscrm.Form.account.MainTab.Save.Controls._children" Sequence="65">
+      <CommandUIDefinition>
+        <Button Command="ras.account.Approve.Command" Id="ras.account.Approve.Button" LabelText="$LocLabels:ras.account.Approve.Button.LabelText" Sequence="65" TemplateAlias="o1" ModernImage="$webresource:accessChecker_icon" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.account.Process.SplitButton.CustomAction" Location="Mscrm.Form.account.MainTab.Save.Controls._children" Sequence="38">
+      <CommandUIDefinition>
+        <SplitButton Command="ras.account.Approve.Command" Id="ras.account.Process.SplitButton" LabelText="$LocLabels:ras.account.Process.SplitButton.LabelText" Sequence="38" TemplateAlias="o1">
+          <Menu Id="ras.account.Process.SplitButton.Menu">
+            <MenuSection Id="ras.account.Section5.Section" Title="$LocLabels:ras.account.Section5.Section.Title" Sequence="5" DisplayMode="Menu16">
+              <Controls Id="ras.account.Section5.Section.Controls">
+                <Button Command="ras.account.Command0.Command" Id="ras.account.Button6.Button" Image32by32="" LabelText="$LocLabels:ras.account.Button6.Button.LabelText" Sequence="10" ModernImage="$webresource:AppCommon/ControlWS/SummaryPageImages/SampleDataManagement.svg" />
+              </Controls>
+            </MenuSection>
+          </Menu>
+        </SplitButton>
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.newgoogle.Button.CustomAction" Location="Mscrm.Form.account.MainTab.Save.Controls._children" Sequence="62">
+      <CommandUIDefinition>
+        <Button Command="ras.account.Command0.Command" Id="newgoogle.Button" LabelText="$LocLabels:newgoogle.Button.LabelText" Sequence="62" TemplateAlias="o1" />
+      </CommandUIDefinition>
+    </CustomAction>
+    <CustomAction Id="ras.test.Button.CustomAction" Location="Mscrm.HomepageGrid.account.MainTab.Management.Controls._children" Sequence="35">
+      <CommandUIDefinition>
+        <Button Command="securityrole.button" Id="test.Button" LabelText="$LocLabels:test.Button.LabelText" Sequence="35" TemplateAlias="o2" ToolTipTitle="$LocLabels:test.Button.ToolTipTitle" ToolTipDescription="$LocLabels:test.Button.ToolTipDescription" />
+      </CommandUIDefinition>
+    </CustomAction>
+  </CustomActions>
+  <Templates>
+    <RibbonTemplates Id="Mscrm.Templates"></RibbonTemplates>
+  </Templates>
+  <CommandDefinitions>
+    <CommandDefinition Id="ras.account.Approve.Command">
+      <EnableRules>
+        <EnableRule Id="ras.account.CheckCreditHold.EnableRule" />
+      </EnableRules>
+      <DisplayRules />
+      <Actions>
+        <JavaScriptFunction FunctionName="showApprovalMessage" Library="$webresource:ras_approveButton">
+          <CrmParameter Value="PrimaryControl" />
+        </JavaScriptFunction>
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="ras.account.Command0.Command">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="updateForm.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <Url Address="https://www.google.com" WinMode="0" />
+      </Actions>
+    </CommandDefinition>
+    <CommandDefinition Id="securityrole.button">
+      <EnableRules />
+      <DisplayRules>
+        <DisplayRule Id="ras.account.DisplayRule1.DisplayRule" />
+      </DisplayRules>
+      <Actions>
+        <Url Address="https://www.google.com" WinMode="0" />
+      </Actions>
+    </CommandDefinition>
+  </CommandDefinitions>
+  <RuleDefinitions>
+    <TabDisplayRules />
+    <DisplayRules>
+      <DisplayRule Id="ras.account.DisplayRule1.DisplayRule">
+        <EntityPrivilegeRule PrivilegeType="Read" PrivilegeDepth="Global" EntityName="account" />
+      </DisplayRule>
+      <DisplayRule Id="updateForm.DisplayRule">
+        <FormStateRule State="Existing" InvertResult="true" />
+      </DisplayRule>
+    </DisplayRules>
+    <EnableRules>
+      <EnableRule Id="ras.account.CheckCreditHold.EnableRule">
+        <ValueRule Field="creditonhold" Value="0" Default="false" InvertResult="false" />
+      </EnableRule>
+    </EnableRules>
+  </RuleDefinitions>
+  <LocLabels>
+    <LocLabel Id="newgoogle.Button.LabelText">
+      <Titles>
+        <Title description="GOOGLE" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ras.account.Approve.Button.LabelText">
+      <Titles>
+        <Title description="APPROVE RECORD" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ras.account.Button6.Button.LabelText">
+      <Titles>
+        <Title description="internet" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ras.account.Process.SplitButton.LabelText">
+      <Titles>
+        <Title description="PROCESS OPTIONS" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="ras.account.Section5.Section.Title">
+      <Titles>
+        <Title description="menu" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="test.Button.LabelText">
+      <Titles>
+        <Title description="TEST" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="test.Button.ToolTipDescription">
+      <Titles>
+        <Title description="this is a test button" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+    <LocLabel Id="test.Button.ToolTipTitle">
+      <Titles>
+        <Title description="test" languagecode="1033" />
+      </Titles>
+    </LocLabel>
+  </LocLabels>
+</RibbonDiffXml>
