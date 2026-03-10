@@ -1,0 +1,41 @@
+<appaction uniquename="ras__Mscrm.Form.{!EntityLogicalName}.NewRecord!ras_testingappforribbon!account!0">
+  <appmoduleid>
+    <uniquename>ras_testingappforribbon</uniquename>
+  </appmoduleid>
+  <buttonaccessibilitytext default="New">
+    <label description="New" languagecode="1033" />
+  </buttonaccessibilitytext>
+  <buttonlabeltext default="start flow">
+    <label description="start flow" languagecode="1033" />
+  </buttonlabeltext>
+  <buttontooltipdescription default="Create a new {EntityLogicalNameMarker} record.">
+    <label description="Create a new {EntityLogicalNameMarker} record." languagecode="1033" />
+  </buttontooltipdescription>
+  <buttontooltiptitle default="New">
+    <label description="New" languagecode="1033" />
+  </buttontooltiptitle>
+  <context>1</context>
+  <contextentity>
+    <logicalname>account</logicalname>
+  </contextentity>
+  <contextvalue>account</contextvalue>
+  <fonticon>$clientsvg:Flow</fonticon>
+  <hidden>0</hidden>
+  <iscustomizable>1</iscustomizable>
+  <isdisabled>0</isdisabled>
+  <isgrouptitlehidden>0</isgrouptitlehidden>
+  <location>0</location>
+  <name>Mscrm.Form.{!EntityLogicalName}.NewRecord</name>
+  <onclickeventjavascriptfunctionname>callFlow</onclickeventjavascriptfunctionname>
+  <onclickeventjavascriptparameters>[{"type":5}]</onclickeventjavascriptparameters>
+  <onclickeventjavascriptwebresourceid>
+    <webresourceid>63bfbf17-aab8-e911-a98a-000d3af475aa</webresourceid>
+  </onclickeventjavascriptwebresourceid>
+  <onclickeventtype>2</onclickeventtype>
+  <origin>2</origin>
+  <sequence>100100045.0000000000</sequence>
+  <statecode>0</statecode>
+  <statuscode>1</statuscode>
+  <type>0</type>
+  <visibilitytype>0</visibilitytype>
+</appaction>
