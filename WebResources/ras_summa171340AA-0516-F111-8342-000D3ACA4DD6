@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Custom Resource</title>
+    <script src="../ClientGlobalContext.js.aspx" type="text/javascript"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body>
+    <h3>Hello from HTML Resource!</h3>
+    <p>This is a custom section inside your Model-Driven App.</p>
+</body>
+</html>

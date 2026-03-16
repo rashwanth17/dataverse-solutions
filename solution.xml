@@ -1,26 +1,26 @@
 <ImportExportXml version="9.2.26031.151" SolutionPackageVersion="9.2" languagecode="1033" generatedBy="CrmLive" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" OrganizationVersion="9.2.26031.151" OrganizationSchemaType="Standard" CRMServerServiceabilityVersion="9.2.26031.00151">
   <SolutionManifest>
-    <UniqueName>SupportManagementHub</UniqueName>
+    <UniqueName>CompanyAssetManagement</UniqueName>
     <LocalizedNames>
-      <LocalizedName description="Support Management Hub" languagecode="1033" />
+      <LocalizedName description="Company Asset Management" languagecode="1033" />
     </LocalizedNames>
     <Descriptions />
     <Version>1.0.0.1</Version>
     <Managed>0</Managed>
     <Publisher>
-      <UniqueName>Cr02bfa</UniqueName>
+      <UniqueName>Rashwanth</UniqueName>
       <LocalizedNames>
-        <LocalizedName description="CDS Default Publisher" languagecode="1033" />
+        <LocalizedName description="Rashwanth" languagecode="1033" />
       </LocalizedNames>
       <Descriptions />
       <EMailAddress xsi:nil="true"></EMailAddress>
       <SupportingWebsiteUrl xsi:nil="true"></SupportingWebsiteUrl>
-      <CustomizationPrefix>cr452</CustomizationPrefix>
-      <CustomizationOptionValuePrefix>84562</CustomizationOptionValuePrefix>
+      <CustomizationPrefix>ras</CustomizationPrefix>
+      <CustomizationOptionValuePrefix>90900</CustomizationOptionValuePrefix>
       <Addresses>
         <Address>
           <AddressNumber>1</AddressNumber>
-          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <AddressTypeCode>1</AddressTypeCode>
           <City xsi:nil="true"></City>
           <County xsi:nil="true"></County>
           <Country xsi:nil="true"></Country>
@@ -36,7 +36,7 @@
           <PostalCode xsi:nil="true"></PostalCode>
           <PostOfficeBox xsi:nil="true"></PostOfficeBox>
           <PrimaryContactName xsi:nil="true"></PrimaryContactName>
-          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <ShippingMethodCode>1</ShippingMethodCode>
           <StateOrProvince xsi:nil="true"></StateOrProvince>
           <Telephone1 xsi:nil="true"></Telephone1>
           <Telephone2 xsi:nil="true"></Telephone2>
@@ -48,7 +48,7 @@
         </Address>
         <Address>
           <AddressNumber>2</AddressNumber>
-          <AddressTypeCode xsi:nil="true"></AddressTypeCode>
+          <AddressTypeCode>1</AddressTypeCode>
           <City xsi:nil="true"></City>
           <County xsi:nil="true"></County>
           <Country xsi:nil="true"></Country>
@@ -64,7 +64,7 @@
           <PostalCode xsi:nil="true"></PostalCode>
           <PostOfficeBox xsi:nil="true"></PostOfficeBox>
           <PrimaryContactName xsi:nil="true"></PrimaryContactName>
-          <ShippingMethodCode xsi:nil="true"></ShippingMethodCode>
+          <ShippingMethodCode>1</ShippingMethodCode>
           <StateOrProvince xsi:nil="true"></StateOrProvince>
           <Telephone1 xsi:nil="true"></Telephone1>
           <Telephone2 xsi:nil="true"></Telephone2>
@@ -77,26 +77,136 @@
       </Addresses>
     </Publisher>
     <RootComponents>
-      <RootComponent type="1" schemaName="cr452_supportrequest" behavior="0" />
-      <RootComponent type="29" id="{322de028-fa11-f111-8342-000d3aca4dd6}" behavior="0" />
-      <RootComponent type="29" id="{9caac830-3911-f111-8342-000d3aca4dd6}" behavior="0" />
-      <RootComponent type="60" id="{9080e45c-8317-f111-8342-000d3aca4dd6}" behavior="0" />
-      <RootComponent type="60" id="{b3f6f32c-8517-f111-8342-000d3aca4dd6}" />
-      <RootComponent type="62" schemaName="cr452_SupportManagementHub" behavior="0" />
-      <RootComponent type="80" schemaName="cr452_SupportManagementHub" behavior="0" />
+      <RootComponent type="1" schemaName="ras_assetallocation" behavior="0" />
+      <RootComponent type="1" schemaName="ras_assetallocationprocess" behavior="0" />
+      <RootComponent type="1" schemaName="ras_assets" behavior="0" />
+      <RootComponent type="1" schemaName="ras_bugresolutionprocess" behavior="0" />
+      <RootComponent type="1" schemaName="ras_employees" behavior="0" />
+      <RootComponent type="1" schemaName="ras_issues" behavior="0" />
+      <RootComponent type="1" schemaName="systemuser" behavior="1" />
+      <RootComponent type="9" schemaName="ras_departments" behavior="0" />
+      <RootComponent type="9" schemaName="ras_roles" behavior="0" />
+      <RootComponent type="20" id="{6f15a805-4016-f111-8342-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{0e04365e-0907-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{15b80fb6-be07-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{278757c6-c4fc-f011-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{2b533fae-2ffb-f011-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{375d47c0-5807-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{4191584e-52fc-f011-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{41d3af64-1ffc-f011-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{59ce397e-3d07-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{66b5f087-c207-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{8f0cb28e-c307-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{9212a79e-5a07-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{c534009e-0f07-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{d071672b-890d-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="29" id="{f7ebdc76-140b-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="60" id="{2b0100bf-0b0e-f111-8342-000d3aca4dd6}" />
+      <RootComponent type="60" id="{587c872d-ad16-f111-8342-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="60" id="{652fc187-a50d-f111-8407-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="60" id="{87c08b71-ff15-f111-8342-000d3aca4dd6}" behavior="0" />
+      <RootComponent type="61" schemaName="ras_button" behavior="0" />
+      <RootComponent type="61" schemaName="ras_role" behavior="0" />
+      <RootComponent type="61" schemaName="ras_Screenshot1" behavior="0" />
+      <RootComponent type="61" schemaName="ras_simpleWebResource" behavior="0" />
+      <RootComponent type="61" schemaName="ras_summa" behavior="0" />
+      <RootComponent type="62" schemaName="ras_AccountsDepartmentAssetsApp" behavior="0" />
+      <RootComponent type="62" schemaName="ras_ITDepartmentAssetsApp1" behavior="0" />
+      <RootComponent type="80" schemaName="ras_AccountsDepartmentAssetsApp" behavior="0" />
+      <RootComponent type="80" schemaName="ras_ITDepartmentAssetsApp1" behavior="0" />
     </RootComponents>
     <MissingDependencies>
+      <MissingDependency>
+        <Required type="1" schemaName="cr452_request" displayName="Request" solution="Active" />
+        <Dependent type="1" schemaName="ras_employees" displayName="Employees" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="2" schemaName="cr452_department_name" displayName="Department Name" parentSchemaName="cr452_department" parentDisplayName="Department" solution="Active" />
+        <Dependent type="10" schemaName="cr452_ras_employees_Department_cr452_department" displayName="cr452_ras_employees_Department_cr452_department" parentSchemaName="cr452_department" parentDisplayName="Department" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="20" displayName="IT App User Role" solution="Active" id="{966ca27c-8dfa-f011-8407-000d3aca4dd6}" />
+        <Dependent type="80" schemaName="ras_ITDepartmentAssetsApp1" displayName="IT Department Assets App1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="AsyncOperation_system_job_link.html" displayName="AsyncOperation_system_job_link.html" solution="msft_AsyncServiceInfrastructure (9.1.1.169)">
+          <package appName="Async Service Extensions App Package" version="9.1.1.169">msft_AsyncServiceExtensionsApp_Anchor (9.1.1.169)</package>
+        </Required>
+        <Dependent type="62" schemaName="ras_AccountsDepartmentAssetsApp" />
+      </MissingDependency>
       <MissingDependency>
         <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
           <package appName="AppModule Web Resources Package" version="2.5">AppModuleWebResources (2.5)</package>
         </Required>
-        <Dependent type="80" schemaName="cr452_SupportManagementHub" displayName="Support Management Hub" />
+        <Dependent type="80" schemaName="ras_AccountsDepartmentAssetsApp" displayName="Accounts Department Assets App" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="61" schemaName="msdyn_/Images/AppModule_Default_Icon.png" displayName="msdyn_/Images/AppModule_Default_Icon.png" solution="AppModuleWebResources (2.5)">
+          <package appName="AppModule Web Resources Package" version="2.5">AppModuleWebResources (2.5)</package>
+        </Required>
+        <Dependent type="80" schemaName="ras_ITDepartmentAssetsApp1" displayName="IT Department Assets App1" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="66" schemaName="MscrmControls.Grid.GridControl" displayName="MscrmControls.Grid.GridControl" solution="BaseCustomControlsCore (9.0.2603.1003)">
+          <package appName="Base Custom Controls" version="9.0.2603.1003">BaseCustomControlsCore (9.0.2603.1003)</package>
+        </Required>
+        <Dependent type="68" id="{dd5abb1d-d90d-43a6-ae54-c6cb85678bc1}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedapprovals_916ad" solution="Active" id.connectionreferencelogicalname="new_sharedapprovals_916ad" />
+        <Dependent type="29" displayName="Asset Allocation Approval Flow" id="{c534009e-0f07-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Copy Asset Availability to Allocation" id="{375d47c0-5807-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Update Asset Availability on Return" id="{59ce397e-3d07-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Make assets available when returned" id="{8f0cb28e-c307-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Asset Allocation Approval Flow" id="{c534009e-0f07-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Create SharePoint folder when Asset is created" id="{d071672b-890d-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedcommondataserviceforapps_11c76" solution="Active" id.connectionreferencelogicalname="new_sharedcommondataserviceforapps_11c76" />
+        <Dependent type="29" displayName="Move to Manager Review" id="{f7ebdc76-140b-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedoffice365_a6863" solution="Active" id.connectionreferencelogicalname="new_sharedoffice365_a6863" />
+        <Dependent type="29" displayName="Asset Allocation Approval Flow" id="{c534009e-0f07-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedonedriveforbusiness_7900e" solution="Active" id.connectionreferencelogicalname="new_sharedonedriveforbusiness_7900e" />
+        <Dependent type="29" displayName="Create SharePoint folder when Asset is created" id="{d071672b-890d-f111-8407-000d3aca4dd6}" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="connectionreference" displayName="new_sharedsharepointonline_33cf9" solution="Active" id.connectionreferencelogicalname="new_sharedsharepointonline_33cf9" />
+        <Dependent type="29" displayName="Create SharePoint folder when Asset is created" id="{d071672b-890d-f111-8407-000d3aca4dd6}" />
       </MissingDependency>
       <MissingDependency>
         <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.15)" id.uniquename="AppChannel">
           <package appName="PowerAppsAppFramework Package" version="1.0.0.25">PowerAppsAppFramework_Anchor (1.0.0.25)</package>
         </Required>
-        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=cr452_SupportManagementHub,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="cr452_SupportManagementHub" id.settingdefinitionid.uniquename="AppChannel" />
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ras_AccountsDepartmentAssetsApp,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="ras_AccountsDepartmentAssetsApp" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="SettingDefinition" displayName="AppChannel" solution="msdyn_AppFrameworkInfraExtensions (1.0.0.15)" id.uniquename="AppChannel">
+          <package appName="PowerAppsAppFramework Package" version="1.0.0.25">PowerAppsAppFramework_Anchor (1.0.0.25)</package>
+        </Required>
+        <Dependent type="AppSetting" displayName="parentappmoduleid.uniquename=ras_ITDepartmentAssetsApp1,settingdefinitionid.uniquename=AppChannel" id.parentappmoduleid.uniquename="ras_ITDepartmentAssetsApp1" id.settingdefinitionid.uniquename="AppChannel" />
+      </MissingDependency>
+      <MissingDependency>
+        <Required type="1" schemaName="systemuser" displayName="SystemUser" parentSchemaName="" solution="msdyn_PowerAdminSettingsEmail (1.1.1.3079)" />
+        <Dependent type="1" schemaName="systemuser" displayName="SystemUser" />
       </MissingDependency>
     </MissingDependencies>
   </SolutionManifest>

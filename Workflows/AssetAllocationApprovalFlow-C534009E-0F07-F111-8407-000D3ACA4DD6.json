@@ -1,0 +1,471 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_11c76"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      },
+      "shared_approvals": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedapprovals_916ad"
+        },
+        "api": {
+          "name": "shared_approvals"
+        }
+      },
+      "shared_office365": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedoffice365_a6863"
+        },
+        "api": {
+          "name": "shared_office365"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        },
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        }
+      },
+      "triggers": {
+        "When_a_row_is_added,_modified_or_deleted": {
+          "metadata": {
+            "operationMetadataId": "7d4486ca-5265-414c-9ece-caf9939c32b5"
+          },
+          "type": "OpenApiConnectionWebhook",
+          "inputs": {
+            "parameters": {
+              "subscriptionRequest/message": 1,
+              "subscriptionRequest/entityname": "ras_assetallocation",
+              "subscriptionRequest/scope": 4
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "SubscribeWebhookTrigger",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        }
+      },
+      "actions": {
+        "Get_Assets_records": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "453dae99-3f41-45a5-b7b7-40a08dccb022"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "parameters": {
+              "entityName": "ras_assetses",
+              "recordId": "@triggerOutputs()?['body/_ras_asset_value']"
+            },
+            "host": {
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+              "operationId": "GetItem",
+              "connectionName": "shared_commondataserviceforapps"
+            }
+          }
+        },
+        "If_external_device": {
+          "actions": {
+            "Security_Clearance": {
+              "metadata": {
+                "operationMetadataId": "ec4472c9-d767-4baf-8715-b4993038469f"
+              },
+              "type": "OpenApiConnectionWebhook",
+              "inputs": {
+                "parameters": {
+                  "approvalType": "Basic",
+                  "WebhookApprovalCreationInput/title": "Security Clearance Required",
+                  "WebhookApprovalCreationInput/assignedTo": "rashwanth.em@intimetec.com",
+                  "WebhookApprovalCreationInput/enableNotifications": true,
+                  "WebhookApprovalCreationInput/enableReassignment": true
+                },
+                "host": {
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals",
+                  "operationId": "StartAndWaitForAnApproval",
+                  "connectionName": "shared_approvals"
+                }
+              }
+            },
+            "if_security_cleared": {
+              "actions": {
+                "If_price_is_above_5000": {
+                  "actions": {
+                    "Start_and_wait_for_an_approval": {
+                      "metadata": {
+                        "operationMetadataId": "8c308f01-0f59-4854-a861-7bff7b9bcf45"
+                      },
+                      "type": "OpenApiConnectionWebhook",
+                      "inputs": {
+                        "parameters": {
+                          "approvalType": "Basic",
+                          "WebhookApprovalCreationInput/title": "Approval for assest allocation",
+                          "WebhookApprovalCreationInput/assignedTo": "rashwanth.em@intimetec.com;",
+                          "WebhookApprovalCreationInput/enableNotifications": true,
+                          "WebhookApprovalCreationInput/enableReassignment": true
+                        },
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals",
+                          "operationId": "StartAndWaitForAnApproval",
+                          "connectionName": "shared_approvals"
+                        }
+                      }
+                    },
+                    "Condition_2": {
+                      "actions": {
+                        "Approved_the_record": {
+                          "metadata": {
+                            "operationMetadataId": "fa79c9c0-afc4-4de2-95cc-da5f72136a1d"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "ras_assetallocations",
+                              "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                              "item/ras_approvalstatus": 909000001
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        },
+                        "Notify_on_approval": {
+                          "runAfter": {
+                            "Approved_the_record": [
+                              "Succeeded"
+                            ]
+                          },
+                          "metadata": {
+                            "operationMetadataId": "aee15974-69ed-4b91-b0ca-3aedefb39b76"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "emailMessage/To": "@outputs('Approved_the_record')?['body/_createdby_value']",
+                              "emailMessage/Subject": "Your Asset Request Has Been Approved",
+                              "emailMessage/Body": "<p>Hello @{outputs('Approved_the_record')?['body/_ras_employee_value']},<br>\n<br>\nYour request for @{outputs('Approved_the_record')?['body/_ras_asset_value']} has been approved.<br>\n<br>\nAssigned Date: @{triggerOutputs()?['body/ras_assigneddate']}<br>\n<br>\nThank you.</p>",
+                              "emailMessage/Importance": "Normal"
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                              "operationId": "SendEmailV2",
+                              "connectionName": "shared_office365"
+                            }
+                          }
+                        }
+                      },
+                      "runAfter": {
+                        "Start_and_wait_for_an_approval": [
+                          "Succeeded"
+                        ]
+                      },
+                      "else": {
+                        "actions": {
+                          "rejected_the_record": {
+                            "metadata": {
+                              "operationMetadataId": "8de1eb21-d428-4331-ab9c-fafbbcaacbe4"
+                            },
+                            "type": "OpenApiConnection",
+                            "inputs": {
+                              "parameters": {
+                                "entityName": "ras_assetallocations",
+                                "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                                "item/ras_approvalstatus": 909000002
+                              },
+                              "host": {
+                                "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                                "operationId": "UpdateOnlyRecord",
+                                "connectionName": "shared_commondataserviceforapps"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "expression": {
+                        "equals": [
+                          "@outputs('Start_and_wait_for_an_approval')?['body/outcome']",
+                          "Approve"
+                        ]
+                      },
+                      "metadata": {
+                        "operationMetadataId": "29a9d599-8424-4884-aba6-057ece5c1869"
+                      },
+                      "type": "If"
+                    }
+                  },
+                  "else": {
+                    "actions": {
+                      "rejected_because_of_price": {
+                        "metadata": {
+                          "operationMetadataId": "0f8737b5-0a42-4700-8773-d4d38975b306"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "entityName": "ras_assetallocations",
+                            "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                            "item/ras_approvalstatus": 909000001
+                          },
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                            "operationId": "UpdateOnlyRecord",
+                            "connectionName": "shared_commondataserviceforapps"
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "expression": {
+                    "and": [
+                      {
+                        "greater": [
+                          "@outputs('Get_Assets_records')?['body/ras_assetcost']",
+                          50000
+                        ]
+                      }
+                    ]
+                  },
+                  "metadata": {
+                    "operationMetadataId": "21890e01-d94c-4c33-8df3-bce7bf37ffd4"
+                  },
+                  "type": "If"
+                }
+              },
+              "runAfter": {
+                "Security_Clearance": [
+                  "Succeeded"
+                ]
+              },
+              "else": {
+                "actions": {
+                  "Update_a_row": {
+                    "metadata": {
+                      "operationMetadataId": "0fa6d7a6-23b7-48fd-bab4-d61749a64c71"
+                    },
+                    "type": "OpenApiConnection",
+                    "inputs": {
+                      "parameters": {
+                        "entityName": "ras_assetallocations",
+                        "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                        "item/ras_approvalstatus": 909000002
+                      },
+                      "host": {
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                        "operationId": "UpdateOnlyRecord",
+                        "connectionName": "shared_commondataserviceforapps"
+                      }
+                    }
+                  }
+                }
+              },
+              "expression": {
+                "and": [
+                  {
+                    "equals": [
+                      "@outputs('Security_Clearance')?['body/outcome']",
+                      "Approve"
+                    ]
+                  }
+                ]
+              },
+              "metadata": {
+                "operationMetadataId": "aecdd7b7-d84d-418b-a700-9333acd54fc5"
+              },
+              "type": "If"
+            }
+          },
+          "runAfter": {
+            "Get_Assets_records": [
+              "Succeeded"
+            ]
+          },
+          "else": {
+            "actions": {
+              "Condition_4": {
+                "actions": {
+                  "Start_and_wait_for_an_approval_2": {
+                    "metadata": {
+                      "operationMetadataId": "a86870e9-8a71-4c21-80ed-7517071de1d0"
+                    },
+                    "type": "OpenApiConnectionWebhook",
+                    "inputs": {
+                      "parameters": {
+                        "approvalType": "Basic",
+                        "WebhookApprovalCreationInput/title": "Approval for assest allocation",
+                        "WebhookApprovalCreationInput/assignedTo": "rashwanth.em@intimetec.com",
+                        "WebhookApprovalCreationInput/enableNotifications": true,
+                        "WebhookApprovalCreationInput/enableReassignment": true
+                      },
+                      "host": {
+                        "apiId": "/providers/Microsoft.PowerApps/apis/shared_approvals",
+                        "operationId": "StartAndWaitForAnApproval",
+                        "connectionName": "shared_approvals"
+                      }
+                    }
+                  },
+                  "Condition_5": {
+                    "actions": {
+                      "Approved": {
+                        "metadata": {
+                          "operationMetadataId": "b176ee62-ec3f-4c47-9742-dd3ea325a2bd"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "entityName": "ras_assetallocations",
+                            "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                            "item/ras_approvalstatus": 909000001
+                          },
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                            "operationId": "UpdateOnlyRecord",
+                            "connectionName": "shared_commondataserviceforapps"
+                          }
+                        }
+                      },
+                      "Notify_the_user_in_approval": {
+                        "runAfter": {
+                          "Approved": [
+                            "Succeeded"
+                          ]
+                        },
+                        "metadata": {
+                          "operationMetadataId": "c7499369-0ca5-42b5-833f-b13feb6490e5"
+                        },
+                        "type": "OpenApiConnection",
+                        "inputs": {
+                          "parameters": {
+                            "emailMessage/To": "@outputs('Approved')?['body/_createdby_value']",
+                            "emailMessage/Subject": "approved",
+                            "emailMessage/Body": "<p>approved</p>",
+                            "emailMessage/Importance": "Normal"
+                          },
+                          "host": {
+                            "apiId": "/providers/Microsoft.PowerApps/apis/shared_office365",
+                            "operationId": "SendEmailV2",
+                            "connectionName": "shared_office365"
+                          }
+                        }
+                      }
+                    },
+                    "runAfter": {
+                      "Start_and_wait_for_an_approval_2": [
+                        "Succeeded"
+                      ]
+                    },
+                    "else": {
+                      "actions": {
+                        "Update_a_row_5": {
+                          "metadata": {
+                            "operationMetadataId": "093c6963-b57f-4a7c-a9a2-b89727728623"
+                          },
+                          "type": "OpenApiConnection",
+                          "inputs": {
+                            "parameters": {
+                              "entityName": "ras_assetallocations",
+                              "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                              "item/ras_approvalstatus": 909000002
+                            },
+                            "host": {
+                              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                              "operationId": "UpdateOnlyRecord",
+                              "connectionName": "shared_commondataserviceforapps"
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "expression": {
+                      "and": [
+                        {
+                          "equals": [
+                            "@outputs('Start_and_wait_for_an_approval_2')?['body/outcome']",
+                            "Approve"
+                          ]
+                        }
+                      ]
+                    },
+                    "metadata": {
+                      "operationMetadataId": "939b2619-80b4-423f-9d40-5f2d25d58fbb"
+                    },
+                    "type": "If"
+                  }
+                },
+                "else": {
+                  "actions": {
+                    "Update_a_row_6": {
+                      "metadata": {
+                        "operationMetadataId": "eb6b45f4-7af5-4ed5-90d2-27641c6ed17a"
+                      },
+                      "type": "OpenApiConnection",
+                      "inputs": {
+                        "parameters": {
+                          "entityName": "ras_assetallocations",
+                          "recordId": "@triggerOutputs()?['body/ras_assetallocationid']",
+                          "item/ras_approvalstatus": 909000002
+                        },
+                        "host": {
+                          "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps",
+                          "operationId": "UpdateOnlyRecord",
+                          "connectionName": "shared_commondataserviceforapps"
+                        }
+                      }
+                    }
+                  }
+                },
+                "expression": {
+                  "and": [
+                    {
+                      "greater": [
+                        "@outputs('Get_Assets_records')?['body/ras_assetcost']",
+                        50000
+                      ]
+                    }
+                  ]
+                },
+                "metadata": {
+                  "operationMetadataId": "807a3e76-8cc1-4a0a-a3e8-43842769b58d"
+                },
+                "type": "If"
+              }
+            }
+          },
+          "expression": {
+            "and": [
+              {
+                "equals": [
+                  "@triggerOutputs()?['body/ras_requesttype']",
+                  909000001
+                ]
+              }
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "ab70fb7e-338f-4577-92a5-26b58d20042c"
+          },
+          "type": "If"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

@@ -1,0 +1,7 @@
+function onFormLoad(executionContext) {
+
+    Xrm.Navigation.openAlertDialog({
+        text: "Welcome! Web Resource is successfully working."
+    });
+
+}

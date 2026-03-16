@@ -1,0 +1,12 @@
+function isITManager() {
+    var roles = Xrm.Utility.getGlobalContext().userSettings.roles;
+    var hasRole = false;
+
+    roles.forEach(function (role) {
+        if (role.name === "IT Manager") {
+            hasRole = true;
+        }
+    });
+
+    return hasRole;
+}
