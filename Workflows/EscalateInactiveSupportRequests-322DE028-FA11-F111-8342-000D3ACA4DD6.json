@@ -1,0 +1,99 @@
+{
+  "properties": {
+    "connectionReferences": {
+      "shared_commondataserviceforapps": {
+        "runtimeSource": "embedded",
+        "connection": {
+          "connectionReferenceLogicalName": "new_sharedcommondataserviceforapps_11c76"
+        },
+        "api": {
+          "name": "shared_commondataserviceforapps"
+        }
+      }
+    },
+    "definition": {
+      "$schema": "https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#",
+      "contentVersion": "1.0.0.0",
+      "parameters": {
+        "$connections": {
+          "defaultValue": {},
+          "type": "Object"
+        },
+        "$authentication": {
+          "defaultValue": {},
+          "type": "SecureObject"
+        }
+      },
+      "triggers": {
+        "Recurrence": {
+          "recurrence": {
+            "frequency": "Day",
+            "interval": 1,
+            "startTime": "2026-02-25T04:30:00Z"
+          },
+          "metadata": {
+            "operationMetadataId": "5dffb250-d68f-460c-bf1d-ce392fb2c3c4"
+          },
+          "type": "Recurrence"
+        }
+      },
+      "actions": {
+        "List_rows": {
+          "runAfter": {},
+          "metadata": {
+            "operationMetadataId": "6333363a-5973-420e-93b4-4f56b976dae9"
+          },
+          "type": "OpenApiConnection",
+          "inputs": {
+            "host": {
+              "connectionName": "shared_commondataserviceforapps",
+              "operationId": "ListRecords",
+              "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+            },
+            "parameters": {
+              "entityName": "cr452_supportrequests",
+              "$filter": "statuscode eq 1 and createdon le @{addDays(utcNow(),-2)}"
+            },
+            "authentication": "@parameters('$authentication')"
+          }
+        },
+        "Apply_to_each": {
+          "foreach": "@outputs('List_rows')?['body/value']",
+          "actions": {
+            "Update_a_row": {
+              "runAfter": {},
+              "metadata": {
+                "operationMetadataId": "2b2c3b99-da2f-487f-bea6-8cb345e714ee"
+              },
+              "type": "OpenApiConnection",
+              "inputs": {
+                "host": {
+                  "connectionName": "shared_commondataserviceforapps",
+                  "operationId": "UpdateOnlyRecord",
+                  "apiId": "/providers/Microsoft.PowerApps/apis/shared_commondataserviceforapps"
+                },
+                "parameters": {
+                  "entityName": "cr452_supportrequests",
+                  "recordId": "@items('Apply_to_each')?['cr452_supportrequestid']",
+                  "item/cr452_status": 3
+                },
+                "authentication": "@parameters('$authentication')"
+              }
+            }
+          },
+          "runAfter": {
+            "List_rows": [
+              "Succeeded"
+            ]
+          },
+          "metadata": {
+            "operationMetadataId": "be94143e-1a9a-4f48-8b75-6c69448a159a"
+          },
+          "type": "Foreach"
+        }
+      }
+    },
+    "templateName": null
+  },
+  "schemaVersion": "1.0.0.0"
+}

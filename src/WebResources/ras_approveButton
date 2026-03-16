@@ -1,9 +1,0 @@
-function showApprovalMessage(primaryControl) {
-    // This gets the Form Context
-    var formContext = primaryControl;
-    
-    // This gets the value of the Account Name field
-    var accountName = formContext.getAttribute("name").getValue();
-    
-    alert("Account '" + accountName + "' has been sent for approval!");
-}
