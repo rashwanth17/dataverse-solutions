@@ -4,7 +4,9 @@
     <LocalizedNames>
       <LocalizedName description="Company Asset Management" languagecode="1033" />
     </LocalizedNames>
-    <Descriptions />
+    <Descriptions>
+  <Description description="Solution for managing company assets, allocation, issue tracking, and approvals." languagecode="1033" />
+</Descriptions>
     <Version>1.0.0.1</Version>
     <Managed>0</Managed>
     <Publisher>
